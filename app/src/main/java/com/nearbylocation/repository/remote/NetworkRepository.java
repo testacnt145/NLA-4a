@@ -2,13 +2,11 @@ package com.nearbylocation.repository.remote;
 
 import com.nearbylocation.repository.remote.model.foursquare.FourSquareNearbyPlaces;
 import com.nearbylocation.repository.remote.model.googleplaces.GoogleNearbyPlaces;
-import com.nearbylocation.app.util.LogUtil;
 import com.nearbylocation.app.di.DaggerNetworkComponent;
 import com.nearbylocation.app.di.NetworkComponent;
 import com.nearbylocation.app.di.NetworkModule;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Converter;
 import retrofit2.Response;
 import javax.inject.Inject;
 import android.support.annotation.NonNull;
@@ -58,15 +56,8 @@ public class NetworkRepository implements Repository {
 
     @Override
     public void clear() {
-        LogUtil.e(getClass().getSimpleName(), "clear");
-        //callFourSquare.cancel();
-        //callGooglePlaces.cancel();
-    }
-
-    private void generateComponent(String baseUrl, Converter.Factory converterFactory) {
-        NetworkComponent networkComponent = DaggerNetworkComponent.builder()
-                .networkModule(new NetworkModule())
-                .build();
-        networkComponent.inject(this);
+        //LogUtil.e(getClass().getSimpleName(), "clear");
+        callFourSquare.cancel();
+        callGooglePlaces.cancel();
     }
 }
